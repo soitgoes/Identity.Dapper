@@ -48,14 +48,14 @@ namespace Identity.Dapper.Samples.Web
             //        .ConfigureDapperIdentityCryptography(Configuration.GetSection("DapperIdentityCryptography"))
             //        .ConfigureDapperIdentityOptions(new DapperIdentityOptions { UseTransactionalBehavior = false }); //Change to True to use Transactions in all operations
 
-            //services.ConfigureDapperConnectionProvider<MySqlConnectionProvider>(Configuration.GetSection("DapperIdentity"))
-            //        .ConfigureDapperIdentityCryptography(Configuration.GetSection("DapperIdentityCryptography"))
-            //        .ConfigureDapperIdentityOptions(new DapperIdentityOptions { UseTransactionalBehavior = false }); //Change to True to use Transactions in all operations
-
-            //services.ConfigureDapperConnectionProvider<PostgreSqlConnectionProvider>(Configuration.GetSection("ConnectionStrings"))
-            services.ConfigureDapperConnectionProvider<PostgreSqlConnectionProvider>(Configuration.GetSection("DapperIdentity"))
+            services.ConfigureDapperConnectionProvider<MySqlConnectionProvider>(Configuration.GetSection("DapperIdentity"))
                     .ConfigureDapperIdentityCryptography(Configuration.GetSection("DapperIdentityCryptography"))
                     .ConfigureDapperIdentityOptions(new DapperIdentityOptions { UseTransactionalBehavior = false }); //Change to True to use Transactions in all operations
+
+            //services.ConfigureDapperConnectionProvider<PostgreSqlConnectionProvider>(Configuration.GetSection("ConnectionStrings"))
+            //services.ConfigureDapperConnectionProvider<PostgreSqlConnectionProvider>(Configuration.GetSection("DapperIdentity"))
+            //        .ConfigureDapperIdentityCryptography(Configuration.GetSection("DapperIdentityCryptography"))
+            //        .ConfigureDapperIdentityOptions(new DapperIdentityOptions { UseTransactionalBehavior = false }); //Change to True to use Transactions in all operations
 
             services.AddIdentity<CustomUser, CustomRole>(x =>
                                                          {
@@ -65,9 +65,9 @@ namespace Identity.Dapper.Samples.Web
                                                              x.Password.RequireNonAlphanumeric = false;
                                                              x.Password.RequireUppercase = false;
                                                          })
-                    .AddDapperIdentityFor<PostgreSqlConfiguration>()
+                    //.AddDapperIdentityFor<PostgreSqlConfiguration>()
                     //.AddDapperIdentityFor<SqlServerConfiguration>()
-                    //.AddDapperIdentityFor<MySqlConfiguration>()
+                    .AddDapperIdentityFor<MySqlConfiguration>()
                     .AddDefaultTokenProviders();
 
             services.AddMvc();

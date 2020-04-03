@@ -49,4 +49,8 @@
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="package.json" />
+    <Content Remove="bower.json" />
+  </ItemGroup>
 </Project>
